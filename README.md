@@ -1,9 +1,8 @@
 # Trabajo Practico Taller web 1
 
-A cargo del profesor Andres Borgeat.
+## Segundo Cuatrimestre 2019: A cargo del profesor Andres Borgeat.
 
 
-## Segundo Cuatrimestre 2019
 
 <hr>
 
