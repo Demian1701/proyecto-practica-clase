@@ -20,7 +20,13 @@ public class Usuario {
 	private String email;
 	private String password;
 	private String rol;
+
 	
+	public Usuario(String email, String password) {
+		// TODO Auto-generated constructor stub
+		this.email = email;
+		this.password = password;
+	}
 	public Long getId() {
 		return id;
 	}
