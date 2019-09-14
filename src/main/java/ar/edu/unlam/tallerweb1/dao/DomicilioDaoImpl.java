@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -40,40 +41,48 @@ public class DomicilioDaoImpl implements DomicilioDao {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public List<Domicilio> buscarDomicilioPorCalle(String calle) {
+	public List<Domicilio> buscarDomiciliosPorCalle(String calle) {
 		//
 		Session session = sessionFactory.getCurrentSession();
 
-		return (List<Domicilio>) session.createCriteria(Domicilio.class).add(Restrictions.eq("calle", calle)).list();
+		return (List<Domicilio>) session.createCriteria(Domicilio.class)
+				.add(Restrictions.eq("calle", calle))
+				.list();
 	}
 
 	@Override
-	public List<Domicilio> buscarSanJusto(String barrio) {
+	public List<Domicilio> buscarDomiciliosPorBarrio(String barrio) {
 
 		Session session = sessionFactory.getCurrentSession();
 
-		return (List<Domicilio>) session.createCriteria(Domicilio.class).add(Restrictions.eq("barrio", barrio)).list();
-
-	}
-
-	@Override
-	public List<Domicilio> buscarNumeroCalle(String numero1, String numero2) {
-
-		Session session = sessionFactory.getCurrentSession();
-
-		return (List<Domicilio>) session.createCriteria(Domicilio.class).add(Restrictions.between("numero", numero1, numero2));
-
-	}
-
-	@Override
-	public List<Domicilio> buscarSanjustoOrRamosMejia(String barrio1, String barrio2) {
-
-		Session session = sessionFactory.getCurrentSession();
-
-		return (List<Domicilio>) session.createCriteria(Domicilio.class).add(Restrictions.eq("barrio", barrio1))
-				// buscarOR
+		return (List<Domicilio>) session.createCriteria(Domicilio.class)
+				.add(Restrictions.eq("barrio", barrio))
 				.list();
 
+	}
+
+	@Override
+	public List<Domicilio> buscarDomiciliosPorCalleYNumero(String calle, Integer numero1, Integer numero2) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		return (List<Domicilio>) session.createCriteria(Domicilio.class)
+				.add(Restrictions.eq("calle", calle))
+				.add(Restrictions.between("numero", numero1, numero2))
+				.list();
+
+	}
+
+	@Override
+	public List<Domicilio> buscarDomiciliosPorBarrios(String barrio1, String barrio2) {
+
+		Session session = sessionFactory.getCurrentSession();
+		Criterion res1 = Restrictions.eq("barrio", barrio1);
+		Criterion res2 = Restrictions.eq("barrio", barrio2);
+		
+		return (List<Domicilio>) session.createCriteria(Domicilio.class)
+				.add(Restrictions.or(res1,res2))
+				.list();
 	}
 
 }
