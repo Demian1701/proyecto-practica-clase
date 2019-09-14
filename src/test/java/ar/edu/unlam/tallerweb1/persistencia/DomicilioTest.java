@@ -7,11 +7,11 @@ import static org.assertj.core.api.Assertions.*; //todos los metodos static de l
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 
